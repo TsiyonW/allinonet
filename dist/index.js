@@ -19,16 +19,17 @@ app.use(bodyParser.json());
 //   BotService.startBot();
 var server = new apollo_server_express_1.ApolloServer({
     typeDefs: schema_1.schemas,
-    resolvers: lodash_1.merge({}, user_resolver_1.default, cart_resolver_1.default, ecommerceaccount_resolver_1.default)
+    resolvers: lodash_1.merge({}, user_resolver_1.default, cart_resolver_1.default, ecommerceaccount_resolver_1.default),
 });
 server.applyMiddleware({ app: app });
 app.get('/', function (req, res) {
     res.send({
         name: "Tsiyon",
-        age: 22
+        age: 22,
     });
 });
-app.listen({ process: process, : .env.PORT } || { port: 3000 }, function () {
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
     console.log("Server ready at http://localhost:3000" + server.graphqlPath);
 });
 //   app.post('/' + bot.token, function (req, res) {

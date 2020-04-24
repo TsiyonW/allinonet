@@ -10,10 +10,10 @@ module.exports = {
       database:'postgres'
     },
     migrations:{
-      directory: __dirname + '../../migrations'
+      directory: __dirname + './db/migrations'
     },
     seeds:{
-      directory: __dirname + '../../seeds'
+      directory: __dirname + './db/seeds'
     }
   },
 

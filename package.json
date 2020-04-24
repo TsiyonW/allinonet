@@ -1,0 +1,8 @@
+{
+  "name": "allinonet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TsiyonW/allinonet.git",
+  "author": "Tsiyon",
+  "license": "MIT"
+}

@@ -14,7 +14,6 @@ const app = express();
 app.use(bodyParser.json());
 // let bot = new BotService();
 
-( async()=>{
 //   BotService.startBot();
   const server = new ApolloServer({
     typeDefs: schemas,
@@ -23,8 +22,13 @@ app.use(bodyParser.json());
   })
 
   server.applyMiddleware({app})
-
-  app.listen({process.env.PORT || port:3000}, function(){
+  app.get('/', (req, res)=>{
+    res.send({
+        name:"Tsiyon", 
+        age:22
+    })
+})
+  app.listen({process.env.PORT} || {port:3000}, function(){
     console.log(`Server ready at http://localhost:3000${server.graphqlPath}`)
   });
   
@@ -33,12 +37,6 @@ app.use(bodyParser.json());
 //     bot.processUpdate(req.body);
 //     res.sendStatus(200);
 //   });
-  app.get('/', (req, res)=>{
-      res.send({
-          name:"Tsiyon", 
-          age:22
-      })
-  })
 
-})()
+
 

@@ -12,10 +12,10 @@ let bot = require('./utils/common')
 
 const app = express();
 app.use(bodyParser.json());
-//let bot = new BotService();
+let bot = new BotService();
 
 ( async()=>{
-  // BotService.startBot();
+  BotService.startBot();
   const server = new ApolloServer({
     typeDefs: schemas,
     resolvers: merge({}, users,cart, accounts)
@@ -28,11 +28,17 @@ app.use(bodyParser.json());
     console.log(`Server ready at http://localhost:3000${server.graphqlPath}`)
   });
   
-  // app.post('/' + bot.token, function (req, res) {
-  //   console.log(bot.token)
-  //   bot.processUpdate(req.body);
-  //   res.sendStatus(200);
-  // });
+  app.post('/' + bot.token, function (req, res) {
+    console.log(bot.token)
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+  });
+  app.get('/', (req, res)=>{
+      res.send({
+          name:"Tsiyon", 
+          age:22
+      })
+  })
 
 })()
 

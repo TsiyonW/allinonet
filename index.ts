@@ -17,18 +17,20 @@ app.use(bodyParser.json());
 //   BotService.startBot();
   const server = new ApolloServer({
     typeDefs: schemas,
-    resolvers: merge({}, users,cart, accounts)
+    resolvers: merge({}, users,cart, accounts),
     
   })
 
   server.applyMiddleware({app})
+
   app.get('/', (req, res)=>{
     res.send({
         name:"Tsiyon", 
-        age:22
+        age:22,
     })
 })
-  app.listen({process.env.PORT} || {port:3000}, function(){
+const port = process.env.PORT || 3000
+  app.listen(port, function(){
     console.log(`Server ready at http://localhost:3000${server.graphqlPath}`)
   });
   

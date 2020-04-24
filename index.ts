@@ -8,14 +8,14 @@ import { merge } from 'lodash'
 import { BotService } from './utils/common';
 require('dotenv').config();
 const bodyParser = require('body-parser');
-let bot = require('./utils/common')
+// let bot = require('./utils/common')
 
 const app = express();
 app.use(bodyParser.json());
-let bot = new BotService();
+// let bot = new BotService();
 
 ( async()=>{
-  BotService.startBot();
+//   BotService.startBot();
   const server = new ApolloServer({
     typeDefs: schemas,
     resolvers: merge({}, users,cart, accounts)
@@ -24,15 +24,15 @@ let bot = new BotService();
 
   server.applyMiddleware({app})
 
-  app.listen({port:3000}, function(){
+  app.listen({process.env.PORT || port:3000}, function(){
     console.log(`Server ready at http://localhost:3000${server.graphqlPath}`)
   });
   
-  app.post('/' + bot.token, function (req, res) {
-    console.log(bot.token)
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
-  });
+//   app.post('/' + bot.token, function (req, res) {
+//     console.log(bot.token)
+//     bot.processUpdate(req.body);
+//     res.sendStatus(200);
+//   });
   app.get('/', (req, res)=>{
       res.send({
           name:"Tsiyon", 

@@ -28,13 +28,18 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
       let items = $.html(elem)
       let item = cheerio.load(items)
       // let linkItems =  $.html('a.a-text-normal')
-      // let linkItem = cheerio.load(linkItems)
+      // let linkItem = cheerio.load(linkItems)    id:ID!
+
       let itemD = {} as any;
-      itemD.link = item('h2 a.a-text-normal').get(0).attribs.href;
+      itemD.user_id = 1;
+      itemD.site = item('h2 a.a-text-normal').get(0).attribs.href;
       itemD.description = item('a.a-text-normal span.a-text-normal').text().trim();
-      itemD.price = item('.a-offscreen').text().trim();
+      itemD.unitPrice = item('.a-offscreen').text().trim();
       itemD.rating = item('i span.a-icon-alt').text().trim();
       itemD.image = item('img').get(0).attribs.src;
+      itemD.item = "some item";
+      itemD.quantity = 1;
+      itemD.measurementUnit="peace"
       
       data.push(itemD)
   

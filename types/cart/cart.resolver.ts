@@ -22,7 +22,7 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
   // if(searchResult){
     let $ = cheerio.load(searchResult);
     // var element = $('.sg-col-inner')
-    $('div[data-component-type = "s-search-result"]').each((i:any, elem:any)=>{
+     $('div[data-component-type = "s-search-result"]').each(async (i:any, elem:any)=>{
       // console.log('i : ',i)
       // console.log($.html(elem))
       let items = $.html(elem)
@@ -42,12 +42,14 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
       itemD.measurementUnit="peace"
       
       data.push(itemD)
-  
+    // return await  CartDB.Cart.query().insert({...args.input, user_id:ctx.user.id})
+     let itemInDb:any = await  CartDB.Cart.query().insert({...itemD})
+
   
     })
     // console.log($('a.a-text-normal').get(3).attribs.href)
     // console.log(data)
-    return data
+    return await CartDB.Cart.query().where('user_id' ,'=','1')
   // }
   // console.log("something wrong")
 

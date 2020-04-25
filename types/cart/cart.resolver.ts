@@ -38,18 +38,19 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
       itemD.rating = item('i span.a-icon-alt').text().trim();
       itemD.image = item('img').get(0).attribs.src;
       itemD.item = "some item";
-      itemD.quantity = 1;
-      itemD.measurementUnit="peace"
+      // itemD.quantity = 1;
+      // itemD.measurementUnit="peace"
       
       data.push(itemD)
     // return await  CartDB.Cart.query().insert({...args.input, user_id:ctx.user.id})
-     let itemInDb:any = await  CartDB.Cart.query().insert({...itemD})
+    //  let itemInDb:any = await  CartDB.Cart.query().insert({...itemD})
 
   
     })
     // console.log($('a.a-text-normal').get(3).attribs.href)
     // console.log(data)
-    return await CartDB.Cart.query().where('user_id' ,'=','1')
+    // return await CartDB.Cart.query().where('user_id' ,'=','1')
+    return data
   // }
   // console.log("something wrong")
 

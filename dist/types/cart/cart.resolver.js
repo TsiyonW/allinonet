@@ -49,7 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Cart_1 = require("../../db/models/Cart");
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show: true });
+var nightmare = Nightmare({ show: false });
 var cheerio = require('cheerio');
 // return all the items in the cart
 exports.myCart = function (_, args, ctx) { return __awaiter(void 0, void 0, void 0, function () {
@@ -74,31 +74,42 @@ exports.myCart = function (_, args, ctx) { return __awaiter(void 0, void 0, void
                 searchResult = _a.sent();
                 $ = cheerio.load(searchResult);
                 // var element = $('.sg-col-inner')
-                $('div[data-component-type = "s-search-result"]').each(function (i, elem) {
-                    // console.log('i : ',i)
-                    // console.log($.html(elem))
-                    var items = $.html(elem);
-                    var item = cheerio.load(items);
-                    // let linkItems =  $.html('a.a-text-normal')
-                    // let linkItem = cheerio.load(linkItems)    id:ID!
-                    var itemD = {};
-                    itemD.user_id = 1;
-                    itemD.site = item('h2 a.a-text-normal').get(0).attribs.href;
-                    itemD.description = item('a.a-text-normal span.a-text-normal').text().trim();
-                    itemD.unitPrice = item('.a-offscreen').text().trim();
-                    itemD.rating = item('i span.a-icon-alt').text().trim();
-                    itemD.image = item('img').get(0).attribs.src;
-                    itemD.item = "some item";
-                    itemD.quantity = 1;
-                    itemD.measurementUnit = "peace";
-                    data.push(itemD);
-                });
-                // console.log($('a.a-text-normal').get(3).attribs.href)
-                console.log(data);
-                return [2 /*return*/, data
+                $('div[data-component-type = "s-search-result"]').each(function (i, elem) { return __awaiter(void 0, void 0, void 0, function () {
+                    var items, item, itemD, itemInDb;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                items = $.html(elem);
+                                item = cheerio.load(items);
+                                itemD = {};
+                                itemD.user_id = 1;
+                                itemD.site = item('h2 a.a-text-normal').get(0).attribs.href;
+                                itemD.description = item('a.a-text-normal span.a-text-normal').text().trim();
+                                itemD.unitPrice = item('.a-offscreen').text().trim();
+                                itemD.rating = item('i span.a-icon-alt').text().trim();
+                                itemD.image = item('img').get(0).attribs.src;
+                                itemD.item = "some item";
+                                itemD.quantity = 1;
+                                itemD.measurementUnit = "peace";
+                                data.push(itemD);
+                                return [4 /*yield*/, Cart_1.CartDB.Cart.query().insert(__assign({}, itemD))];
+                            case 1:
+                                itemInDb = _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [4 /*yield*/, Cart_1.CartDB.Cart.query().where('user_id', '=', '1')
                     // }
                     // console.log("something wrong")
                 ];
+            case 2: 
+            // console.log($('a.a-text-normal').get(3).attribs.href)
+            // console.log(data)
+            return [2 /*return*/, _a.sent()
+                // }
+                // console.log("something wrong")
+            ];
         }
     });
 }); };

@@ -46,7 +46,7 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
   
     })
     // console.log($('a.a-text-normal').get(3).attribs.href)
-    console.log(data)
+    // console.log(data)
     return data
   // }
   // console.log("something wrong")

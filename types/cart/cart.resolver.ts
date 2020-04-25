@@ -1,7 +1,7 @@
 import { CartDB } from '../../db/models/Cart'
 import { link } from 'fs'
 const Nightmare = require('nightmare')
-const nightmare = Nightmare({ show: true })
+const nightmare = Nightmare({ show: false })
 const cheerio = require('cheerio')
 
 // return all the items in the cart

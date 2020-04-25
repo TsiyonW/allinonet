@@ -1,10 +1,49 @@
 import { CartDB } from '../../db/models/Cart'
+import { link } from 'fs'
+const Nightmare = require('nightmare')
+const nightmare = Nightmare({ show: true })
+const cheerio = require('cheerio')
 
 // return all the items in the cart
 export const myCart = async(_:any, args:any,ctx:any)=>{
-    const cartItems = await CartDB.Cart.query()
-                                .where('user_id', '=',ctx.user.id)
-    return cartItems;
+  let data: string[] = [];
+
+  let searchResult = await nightmare
+        .goto('https://www.amazon.com')
+        .type('#twotabsearchtextbox', 'bag')
+        .click('input.nav-input')
+        .wait('.s-desktop-content')
+        .evaluate(() => document.querySelector('.s-desktop-content').innerHTML)
+        .end()
+
+  // if(searchResult){
+    let $ = cheerio.load(searchResult);
+    // var element = $('.sg-col-inner')
+    $('div[data-component-type = "s-search-result"]').each((i:any, elem:any)=>{
+      // console.log('i : ',i)
+      // console.log($.html(elem))
+      let items = $.html(elem)
+      let item = cheerio.load(items)
+      // let linkItems =  $.html('a.a-text-normal')
+      // let linkItem = cheerio.load(linkItems)
+      let itemD = {} as any;
+      itemD.link = item('h2 a.a-text-normal').get(0).attribs.href;
+      itemD.description = item('a.a-text-normal span.a-text-normal').text().trim();
+      itemD.price = item('.a-offscreen').text().trim();
+      itemD.rating = item('i span.a-icon-alt').text().trim();
+      itemD.image = item('img').get(0).attribs.src;
+      
+      data.push(itemD)
+  
+  
+    })
+    // console.log($('a.a-text-normal').get(3).attribs.href)
+    console.log(data)
+    return data
+  // }
+  // console.log("something wrong")
+
+
 }
 
 //get specific item in the cart using id

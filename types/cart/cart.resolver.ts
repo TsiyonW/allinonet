@@ -13,7 +13,10 @@ export const myCart = async(_:any, args:any,ctx:any)=>{
         .type('#twotabsearchtextbox', 'bag')
         .click('input.nav-input')
         .wait('.s-desktop-content')
-        .evaluate(() => document.querySelector('.s-desktop-content').innerHTML)
+        .evaluate(() => {          
+          let element:HTMLElement = document.querySelector('.s-desktop-content') as HTMLElement
+          return element.innerHTML}
+        )
         .end()
 
   // if(searchResult){

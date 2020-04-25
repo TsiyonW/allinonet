@@ -48,16 +48,53 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Cart_1 = require("../../db/models/Cart");
+var Nightmare = require('nightmare');
+var nightmare = Nightmare({ show: true });
+var cheerio = require('cheerio');
 // return all the items in the cart
 exports.myCart = function (_, args, ctx) { return __awaiter(void 0, void 0, void 0, function () {
-    var cartItems;
+    var data, searchResult, $;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, Cart_1.CartDB.Cart.query()
-                    .where('user_id', '=', ctx.user.id)];
+            case 0:
+                data = [];
+                return [4 /*yield*/, nightmare
+                        .goto('https://www.amazon.com')
+                        .type('#twotabsearchtextbox', 'bag')
+                        .click('input.nav-input')
+                        .wait('.s-desktop-content')
+                        .evaluate(function () {
+                        var element = document.querySelector('.s-desktop-content');
+                        return element.innerHTML;
+                    })
+                        .end()
+                    // if(searchResult){
+                ];
             case 1:
-                cartItems = _a.sent();
-                return [2 /*return*/, cartItems];
+                searchResult = _a.sent();
+                $ = cheerio.load(searchResult);
+                // var element = $('.sg-col-inner')
+                $('div[data-component-type = "s-search-result"]').each(function (i, elem) {
+                    // console.log('i : ',i)
+                    // console.log($.html(elem))
+                    var items = $.html(elem);
+                    var item = cheerio.load(items);
+                    // let linkItems =  $.html('a.a-text-normal')
+                    // let linkItem = cheerio.load(linkItems)
+                    var itemD = {};
+                    itemD.link = item('h2 a.a-text-normal').get(0).attribs.href;
+                    itemD.description = item('a.a-text-normal span.a-text-normal').text().trim();
+                    itemD.price = item('.a-offscreen').text().trim();
+                    itemD.rating = item('i span.a-icon-alt').text().trim();
+                    itemD.image = item('img').get(0).attribs.src;
+                    data.push(itemD);
+                });
+                // console.log($('a.a-text-normal').get(3).attribs.href)
+                console.log(data);
+                return [2 /*return*/, data
+                    // }
+                    // console.log("something wrong")
+                ];
         }
     });
 }); };

@@ -10,8 +10,8 @@ export const schemas = `
 
   type SavedItem{
     id:ID
-    chatId:String!
-    item:String!
+    chatId:String
+    item:String
     description:String
     unitPrice:String
     uri:String

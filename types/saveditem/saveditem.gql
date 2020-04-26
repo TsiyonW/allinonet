@@ -1,14 +1,4 @@
-export const schemas = `
-  type User{
-    id:ID!
-    chatId:String!
-  }
-  
-  input NewUserInput{
-    chatId:String!
-  }
-
-  type SavedItem{
+type SavedItem{
     id:ID!
     chatId:String!
     item:String!
@@ -34,23 +24,15 @@ type newItemInput{
 }
 
 
-  type Query{
-    users:[User]!
-    userBychatId:User!
+type Query{
     mySavedItems(chatId:String!):[SavedItem]!
-    savedItem(chatId:String!,id:ID!):SavedItem!
-    search(chatId:String!, item:String!):SavedItem
-  }
-  type Mutation{
-    register(input:NewUserInput):User!
-    removeUser(chatId:String!):User
+    savedItem(chatId:String,id:ID!):SavedItem!
+    search(item:String!):SavedItem
+}
+
+type Mutation{
     saveItem(chatId:String!,input:newItemInput!):SavedItem!,
     removeItem(chatId:String!,id:ID!):SavedItem!,
     emptySavedItem(chatId:String!):SavedItem!,
-  }
-  schema {
-    query: Query
-    mutation: Mutation
-  }
-  
-`
+    
+}

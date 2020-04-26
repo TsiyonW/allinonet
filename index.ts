@@ -6,6 +6,9 @@ import accounts from './types/ecommerceaccount/ecommerceaccount.resolver'
 import cart from './types/cart/cart.resolver'
 import { merge } from 'lodash'
 import { BotService } from './utils/common';
+import savedItem from './types/saveditem/saveditem.resolver'
+import search from './types/search/search.resolver'
+
 require('dotenv').config();
 const bodyParser = require('body-parser');
 // let bot = require('./utils/common')
@@ -17,7 +20,7 @@ app.use(bodyParser.json());
 //   BotService.startBot();
   const server = new ApolloServer({
     typeDefs: schemas,
-    resolvers: merge({}, users,cart, accounts),
+    resolvers: merge({}, users, savedItem, search),
     
   })
 

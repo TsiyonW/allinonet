@@ -22,7 +22,7 @@ export const schemas = `
 
 }
 
-type newItemInput{
+input newItemInput{
     chatId:String!
     item:String!
     description:String

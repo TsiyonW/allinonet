@@ -9,7 +9,7 @@ export const schemas = `
   }
 
   type SavedItem{
-    id:ID!
+    id:ID
     chatId:String!
     item:String!
     description:String

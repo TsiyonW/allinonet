@@ -61,6 +61,17 @@ $ yarn install
 Now all the installations have finished. Then we will setup our database
 ## Setting up database
 Create a database you want to use and replace DATABAES_URL in knexfile.js to your database url
+> Note: you should specify your password and username of your database in your database connection string
+
+```e.g.
+{
+    host : '127.0.0.1',
+    user : 'your_database_user',
+    password : 'your_database_password',
+    database : 'allinoneDB'
+  } or 
+  postgres://username:password@host:port/db_name
+  ```
  ### Migrate the database
  ```
 knex migrate:latest or 

@@ -5,7 +5,7 @@
 </div>
 
 ## What is AllInOneeCommerce?
-A bot which have functionalities like searching an item and returning the results, add items to cart, redirect to order page,  and view item details from multiple e-commerce sites.
+A bot which has functionalities like searching an item and returning the results, add items to cart, redirect to order page,  and view item details from multiple e-commerce sites.
 
 ## Content
 
@@ -30,14 +30,14 @@ Here is the list of technologies we use:
 ```sh
 Allinoneecommerce/
 ├── db
-├── config
-├── models
+  ├── config
+  ├── models
 ├── dist
 ├── migrations
 ├── types
-├── saveditem
-├── search
-├── user
+  ├── saveditem
+  ├── search
+  ├── user
 ├── utils
 ```
 

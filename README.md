@@ -52,9 +52,9 @@ $ git clone https://github.com/TsiyonW/allinoneecommerce.git
 ```
 ### Installation
 1. **Node.js**: see [Node.js documentation](https://nodejs.org/en/download/) for instructions on installing
-2.**Yarn**: package manager to manage our dependencies see [yarn documentation](https://yarnpkg.com/getting-started/install) for instructions on installing.
-3.**PostgreSQL**: opensource object-relational database system see [postgresql documentation](https://www.postgresql.org/docs/9.3/tutorial-install.html) for instruction.
-4.**Dependencies**: install all the dependencies using yarn install
+2. **Yarn**: package manager to manage our dependencies see [yarn documentation](https://yarnpkg.com/getting-started/install) for instructions on installing.
+3. **PostgreSQL**: opensource object-relational database system see [postgresql documentation](https://www.postgresql.org/docs/9.3/tutorial-install.html) for instruction.
+4. **Dependencies**: install all the dependencies using yarn install
 ```
 $ yarn install
 ```

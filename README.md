@@ -32,13 +32,13 @@ Allinoneecommerce/
 ├── db
   ├── config
   ├── models
-├── dist
-├── migrations
-├── types
+├── dist              #compiled javascript code
+├── migrations        
+├── types             #resolvers
   ├── saveditem
   ├── search
   ├── user
-├── utils
+├── utils             #schema and bot queries
 ```
 
 

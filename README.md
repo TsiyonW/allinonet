@@ -74,11 +74,12 @@ Create a database you want to use and replace DATABAES_URL in knexfile.js to you
   ```
  ### Migrate the database
  ```
-knex migrate:latest or 
-npx knex migrate latest
+$ knex migrate:latest 
+or 
+$ npx knex migrate latest
 ```
 Then run the server 
 ```
-yarn start
+$ yarn start
 ```
 Go to http://localhost:3000/graphql

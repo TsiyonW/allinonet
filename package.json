@@ -14,7 +14,7 @@
     "@types/lodash": "^4.14.150",
     "@types/node": "^13.13.2",
     "apollo-server": "^2.12.0",
-    "apollo-server-express": "^2.12.0",
+    "apollo-server-express": "^2.14.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.2.0",

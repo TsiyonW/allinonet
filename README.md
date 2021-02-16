@@ -5,7 +5,7 @@
 </div>
 
 ## What is AllInOneeCommerce?
-A bot which have functionalities like searching an item and returning the results, add items to cart, redirect to order page,  and view item details from multiple e-commerce sites.
+A bot which has functionalities like searching an item and returning the results, add items to cart, redirect to order page,  and view item details from multiple e-commerce sites.
 
 ## Content
 
@@ -30,15 +30,15 @@ Here is the list of technologies we use:
 ```sh
 Allinoneecommerce/
 ├── db
-├── config
-├── models
-├── dist
-├── migrations
-├── types
-├── saveditem
-├── search
-├── user
-├── utils
+  ├── config
+  ├── models
+├── dist              #compiled javascript code
+├── migrations        
+├── types             #resolvers
+  ├── saveditem
+  ├── search
+  ├── user
+├── utils             #schema and bot queries
 ```
 
 
@@ -52,22 +52,34 @@ $ git clone https://github.com/TsiyonW/allinoneecommerce.git
 ```
 ### Installation
 1. **Node.js**: see [Node.js documentation](https://nodejs.org/en/download/) for instructions on installing
-2.**Yarn**: package manager to manage our dependencies see [yarn documentation](https://yarnpkg.com/getting-started/install) for instructions on installing.
-3.**PostgreSQL**: opensource object-relational database system see [postgresql documentation](https://www.postgresql.org/docs/9.3/tutorial-install.html) for instruction.
-4.**Dependencies**: install all the dependencies using yarn install
+2. **Yarn**: package manager to manage our dependencies see [yarn documentation](https://yarnpkg.com/getting-started/install) for instructions on installing.
+3. **PostgreSQL**: opensource object-relational database system see [postgresql documentation](https://www.postgresql.org/docs/9.3/tutorial-install.html) for instruction.
+4. **Dependencies**: install all the dependencies using yarn install
 ```
 $ yarn install
 ```
 Now all the installations have finished. Then we will setup our database
 ## Setting up database
 Create a database you want to use and replace DATABAES_URL in knexfile.js to your database url
+> Note: you should specify your password and username of your database in your database connection string
+
+```e.g.
+{
+    host : '127.0.0.1',
+    user : 'your_database_user',
+    password : 'your_database_password',
+    database : 'allinoneDB'
+  } or 
+  postgres://username:password@host:port/db_name
+  ```
  ### Migrate the database
  ```
-knex migrate:latest or 
-npx knex migrate latest
+$ knex migrate:latest 
+or 
+$ npx knex migrate latest
 ```
 Then run the server 
 ```
-yarn start
+$ yarn start
 ```
 Go to http://localhost:3000/graphql

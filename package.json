@@ -20,7 +20,7 @@
     "dotenv": "^8.2.0",
     "graphql": "^15.0.0",
     "knex": "^0.21.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "nightmare": "^3.0.2",
     "node-telegram-bot-api": "^0.40.0",
     "objection": "^2.1.3",
